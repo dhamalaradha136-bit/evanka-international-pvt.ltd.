@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evanka International | Medical Equipment & Healthcare Solutions</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            dark: '#0a192f',
+                            teal: '#0d9488',
+                            cyan: '#06b6d4'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #0c4a6e 0%, #075985 50%, #0d9488 100%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #0284c7;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-slate-800 bg-slate-50 flex flex-col min-h-screen">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-brand-900 text-slate-200 text-xs py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-4 flex-wrap justify-center">
+                <span><i class="fa-solid fa-phone text-brand-cyan mr-1"></i> Global Hotline: +1 (800) 555-EVANKA</span>
+                <span><i class="fa-solid fa-envelope text-brand-cyan mr-1"></i> info@evankainternational.com</span>
+                <span><i class="fa-solid fa-location-dot text-brand-cyan mr-1"></i> ISO 13485 Certified Healthcare Supplier</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="hover:text-white cursor-pointer"><i class="fa-brands fa-linkedin"></i></span>
+                <span class="hover:text-white cursor-pointer"><i class="fa-brands fa-facebook"></i></span>
+                <span class="hover:text-white cursor-pointer"><i class="fa-brands fa-twitter"></i></span>
+                <button onclick="toggleCartModal()" class="ml-2 bg-brand-teal hover:bg-teal-600 text-white px-2.5 py-0.5 rounded text-xs font-semibold flex items-center gap-1">
+                    <i class="fa-solid fa-file-invoice"></i> Quote Basket (<span id="cart-count">0</span>)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <header class="sticky top-0 z-40 glass-nav border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('home')">
+                    <div class="w-11 h-11 bg-brand-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-brand-500/30">
+                        <i class="fa-solid fa-staff-snake text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-extrabold tracking-tight text-brand-900 block leading-none">EVANKA</span>
+                        <span class="text-xs font-semibold text-brand-teal tracking-widest uppercase block mt-0.5">International Healthcare</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-700">
+                    <button onclick="switchTab('home')" class="nav-btn hover:text-brand-600 transition text-brand-600" id="nav-home">Home</button>
+                    <button onclick="switchTab('products')" class="nav-btn hover:text-brand-600 transition" id="nav-products">Equipment Catalog</button>
+                    <button onclick="switchTab('healthcare')" class="nav-btn hover:text-brand-600 transition" id="nav-healthcare">Hospital & Turnkey Solutions</button>
+                    <button onclick="switchTab('about')" class="nav-btn hover:text-brand-600 transition" id="nav-about">About Us</button>
+                    <button onclick="switchTab('contact')" class="nav-btn hover:text-brand-600 transition" id="nav-contact">Contact Us</button>
+                </nav>
+
+                <!-- Action Button & Search -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <div class="relative">
+                        <input type="text" id="global-search-input" placeholder="Search medical equipment..." 
+                               class="w-48 lg:w-60 text-xs bg-slate-100 border border-slate-300 rounded-full py-2 pl-8 pr-3 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+                    </div>
+                    <button onclick="switchTab('contact')" class="bg-brand-600 hover:bg-brand-800 text-white px-4 py-2 rounded-lg text-xs font-bold transition shadow-md shadow-brand-600/20">
+                        Get In Touch
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-slate-600 hover:text-brand-600">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-3">
+            <input type="text" id="mobile-search-input" placeholder="Search equipment..." 
+                   class="w-full text-sm bg-slate-100 border border-slate-300 rounded-lg py-2 px-3 mb-2">
+            <button onclick="switchTab('home'); toggleMobileMenu()" class="block w-full text-left py-2 font-semibold text-slate-700 hover:text-brand-600">Home</button>
+            <button onclick="switchTab('products'); toggleMobileMenu()" class="block w-full text-left py-2 font-semibold text-slate-700 hover:text-brand-600">Equipment Catalog</button>
+            <button onclick="switchTab('healthcare'); toggleMobileMenu()" class="block w-full text-left py-2 font-semibold text-slate-700 hover:text-brand-600">Hospital & Turnkey Solutions</button>
+            <button onclick="switchTab('about'); toggleMobileMenu()" class="block w-full text-left py-2 font-semibold text-slate-700 hover:text-brand-600">About Us</button>
+            <button onclick="switchTab('contact'); toggleMobileMenu()" class="block w-full text-left py-2 font-semibold text-slate-700 hover:text-brand-600">Contact Us</button>
+            <button onclick="toggleCartModal(); toggleMobileMenu()" class="w-full bg-brand-teal text-white py-2 rounded-lg font-bold text-center">
+                View Quote Basket (<span id="cart-count-mobile">0</span>)
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow">
+
+        <!-- ==================== TAB 1: HOME PAGE ==================== -->
+        <section id="tab-home" class="tab-content">
+            <!-- Hero Banner -->
+            <div class="hero-gradient text-white py-16 lg:py-24 relative overflow-hidden">
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-teal-400/20 via-transparent to-transparent"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-3 py-1 rounded-full text-xs font-medium text-teal-200">
+                            <span class="w-2 h-2 rounded-full bg-teal-400 animate-ping"></span> Global Healthcare Equipment & Turnkey Provider
+                        </div>
+                        <h1 class="text-3xl sm:text-5xl font-extrabold leading-tight tracking-tight">
+                            Advanced Medical Technology & Complete Hospital Turnkey Solutions
+                        </h1>
+                        <p class="text-base sm:text-lg text-slate-200 max-w-2xl font-light">
+                            Evanka International supplies CE & ISO certified medical devices, diagnostic imaging systems, and provides comprehensive hospital setup, design, and clinical consulting services worldwide.
+                        </p>
+                        <div class="flex flex-wrap gap-4 justify-center lg:justify-start pt-2">
+                            <button onclick="switchTab('products')" class="bg-brand-cyan hover:bg-cyan-500 text-slate-900 px-6 py-3 rounded-xl font-bold transition shadow-lg shadow-cyan-500/30 flex items-center gap-2">
+                                <i class="fa-solid fa-boxes-stacked"></i> Explore Equipment
+                            </button>
+                            <button onclick="switchTab('healthcare')" class="bg-white/10 hover:bg-white/20 border border-white/30 text-white px-6 py-3 rounded-xl font-bold transition backdrop-blur-md flex items-center gap-2">
+                                <i class="fa-solid fa-hospital"></i> Turnkey Hospital Solutions
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quick Equipment Search & Highlight Card -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-white text-slate-800 p-6 rounded-2xl shadow-2xl border border-slate-100 space-y-4">
+                            <div class="border-b pb-3">
+                                <h3 class="font-bold text-lg text-brand-900 flex items-center gap-2">
+                                    <i class="fa-solid fa-sliders text-brand-600"></i> Quick Product Finder
+                                </h3>
+                                <p class="text-xs text-slate-500">Filter through 500+ diagnostic and surgical devices</p>
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold uppercase tracking-wider text-slate-600 block mb-1">Category</label>
+                                <select id="hero-cat-select" class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg p-2.5 focus:ring-2 focus:ring-brand-500">
+                                    <option value="all">All Categories</option>
+                                    <option value="X-Ray & Imaging">X-Ray & Diagnostic Imaging</option>
+                                    <option value="Operating Theater">Operating Theater & Surgical</option>
+                                    <option value="Laboratory Analyzer">Laboratory & IVD</option>
+                                    <option value="Ultrasound">Ultrasound Diagnostic Systems</option>
+                                    <option value="ICU & Patient Monitors">ICU & Life Support</option>
+                                    <option value="Hospital Furniture">Hospital Furniture & Ward</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold uppercase tracking-wider text-slate-600 block mb-1">Keywords / Model</label>
+                                <input type="text" id="hero-keyword" placeholder="e.g., Digital X-Ray, CT Scanner, Monitor" class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg p-2.5 focus:ring-2 focus:ring-brand-500">
+                            </div>
+                            <button onclick="executeHeroSearch()" class="w-full bg-brand-600 hover:bg-brand-800 text-white font-bold py-3 rounded-xl transition text-sm flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-magnifying-glass"></i> Search Catalog
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="bg-white border-b border-slate-200 py-8">
+                <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="p-4 border-r border-slate-100 last:border-0">
+                        <span class="text-3xl font-extrabold text-brand-600 block">75+</span>
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Countries Served</span>
+                    </div>
+                    <div class="p-4 border-r border-slate-100 last:border-0">
+                        <span class="text-3xl font-extrabold text-brand-teal block">1,200+</span>
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Hospital Projects Done</span>
+                    </div>
+                    <div class="p-4 border-r border-slate-100 last:border-0">
+                        <span class="text-3xl font-extrabold text-brand-600 block">500+</span>
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Medical Devices</span>
+                    </div>
+                    <div class="p-4">
+                        <span class="text-3xl font-extrabold text-brand-teal block">CE / ISO</span>
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Certified Standards</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Offerings Section -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-xs font-bold text-brand-teal uppercase tracking-widest">Two Pillars of Excellence</h2>
+                    <p class="text-3xl font-extrabold text-brand-900 mt-1">Medical Equipment Supply & Turnkey Healthcare Projects</p>
+                    <p class="text-slate-600 text-sm mt-2">Combining world-class medical equipment manufacturing & sourcing (Ysenmed Style) with comprehensive hospital operations & project delivery (Fortis Style).</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Column 1: Equipment Catalog -->
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-md hover:shadow-xl transition flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-microscope"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-900 mb-3">Medical Equipment & Technology</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                                Full spectrum diagnostic, surgical, and life support machinery. High precision laboratory analyzers, 3D/4D Color Doppler Ultrasounds, Digital Radiology systems, and modular operating theater setups.
+                            </p>
+                            <ul class="space-y-2 text-sm text-slate-700 font-medium mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-teal"></i> High-frequency Digital X-Ray & Mammography</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-teal"></i> Automated Hematology & Biochemistry Analyzers</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-teal"></i> Multi-para ICU Monitors & Anesthesia Workstations</li>
+                            </ul>
+                        </div>
+                        <button onclick="switchTab('products')" class="w-full bg-slate-900 hover:bg-brand-600 text-white font-bold py-3 rounded-xl transition text-sm flex items-center justify-center gap-2">
+                            Browse Equipment Catalog <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- Column 2: Healthcare & Turnkey Projects -->
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-md hover:shadow-xl transition flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-teal-50 text-brand-teal rounded-2xl flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-hospital-user"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-900 mb-3">Hospital Setup & Clinical Solutions</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                                End-to-end turnkey solutions for new hospitals, centers of excellence, and specialized departments (Cardiology, Orthopedics, Oncology). Includes architectural planning, gas pipelines, and management software.
+                            </p>
+                            <ul class="space-y-2 text-sm text-slate-700 font-medium mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-teal"></i> Medical Gas Pipeline Systems (MGPS) & Modular OT</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-teal"></i> Clinical Expertise & Departmental Consulting</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-teal"></i> Hospital Information Systems (HIS / PACS Integration)</li>
+                            </ul>
+                        </div>
+                        <button onclick="switchTab('healthcare')" class="w-full bg-brand-teal hover:bg-teal-700 text-white font-bold py-3 rounded-xl transition text-sm flex items-center justify-center gap-2">
+                            Explore Healthcare Turnkey Solutions <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Product Showcase Carousel/Grid -->
+            <div class="bg-slate-100 py-16 border-t border-slate-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between items-end mb-8">
+                        <div>
+                            <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest">Featured Products</h2>
+                            <p class="text-2xl font-extrabold text-slate-900">Popular Equipment Supplies</p>
+                        </div>
+                        <button onclick="switchTab('products')" class="text-brand-600 font-bold text-sm hover:underline flex items-center gap-1">
+                            View All <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
+                    
+                    <div id="featured-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Rendered dynamically by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 2: PRODUCTS CATALOG (YSENMED INSPIRED) ==================== -->
+        <section id="tab-products" class="tab-content hidden py-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Header -->
+                <div class="mb-8">
+                    <h1 class="text-3xl font-extrabold text-brand-900">Medical Equipment Catalog</h1>
+                    <p class="text-slate-600 text-sm mt-1">Select from our extensive medical technology portfolio. Click "Inquire Now" to request pricing and quotes.</p>
+                </div>
+
+                <!-- Search & Filters Bar -->
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm mb-8 flex flex-col md:flex-row gap-4 items-center justify-between">
+                    <!-- Category Pills -->
+                    <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 custom-scrollbar text-xs">
+                        <button onclick="filterCategory('All')" class="cat-pill bg-brand-600 text-white px-4 py-2 rounded-lg font-semibold whitespace-nowrap">All Equipment</button>
+                        <button onclick="filterCategory('X-Ray & Imaging')" class="cat-pill bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg font-semibold whitespace-nowrap">X-Ray & Imaging</button>
+                        <button onclick="filterCategory('Operating Theater')" class="cat-pill bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg font-semibold whitespace-nowrap">Operating Theater</button>
+                        <button onclick="filterCategory('Laboratory Analyzer')" class="cat-pill bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg font-semibold whitespace-nowrap">Laboratory</button>
+                        <button onclick="filterCategory('Ultrasound')" class="cat-pill bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg font-semibold whitespace-nowrap">Ultrasound</button>
+                        <button onclick="filterCategory('ICU & Patient Monitors')" class="cat-pill bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg font-semibold whitespace-nowrap">ICU & Monitors</button>
+                        <button onclick="filterCategory('Hospital Furniture')" class="cat-pill bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg font-semibold whitespace-nowrap">Hospital Furniture</button>
+                    </div>
+
+                    <!-- Search Input -->
+                    <div class="w-full md:w-72 relative">
+                        <input type="text" id="catalog-search-input" onkeyup="filterProducts()" placeholder="Filter by keyword..." 
+                               class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg py-2.5 pl-8 pr-3 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-xs"></i>
+                    </div>
+                </div>
+
+                <!-- Product Grid -->
+                <div id="catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Products dynamically rendered here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 3: HOSPITAL & HEALTHCARE (FORTIS INSPIRED) ==================== -->
+        <section id="tab-healthcare" class="tab-content hidden py-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Banner -->
+                <div class="bg-brand-900 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden mb-12">
+                    <div class="relative z-10 max-w-2xl">
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-cyan">Healthcare Infrastructure & Clinical Excellence</span>
+                        <h1 class="text-3xl md:text-4xl font-extrabold mt-2 leading-tight">Complete Turnkey Hospital Setup & Specialized Healthcare Advisory</h1>
+                        <p class="text-slate-300 text-sm mt-3">From initial feasibility studies and architectural layout design to modular operating theater installation and center-of-excellence setup.</p>
+                        <button onclick="openTurnkeyModal()" class="mt-6 bg-brand-teal hover:bg-teal-600 text-white font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-xl transition">
+                            Book Hospital Turnkey Consultation
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Centers of Excellence (Fortis Style) -->
+                <div class="mb-16">
+                    <div class="text-center max-w-2xl mx-auto mb-10">
+                        <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest">Specialized Medical Care Units</h2>
+                        <p class="text-2xl font-extrabold text-slate-900 mt-1">Hospital Centers of Excellence We Setup</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 text-center hover:border-brand-500 transition shadow-sm">
+                            <div class="w-12 h-12 bg-rose-50 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
+                                <i class="fa-solid fa-heart-pulse"></i>
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-sm">Cardiology & Cath Lab</h3>
+                            <p class="text-xs text-slate-500 mt-1">Full hemodynamic recording, cardiac OT & ICU setup.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 text-center hover:border-brand-500 transition shadow-sm">
+                            <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
+                                <i class="fa-solid fa-bone"></i>
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-sm">Orthopedics & Joint</h3>
+                            <p class="text-xs text-slate-500 mt-1">Laminar airflow OT, arthroscopy & surgical tools.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 text-center hover:border-brand-500 transition shadow-sm">
+                            <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-sm">Neurology & Spine</h3>
+                            <p class="text-xs text-slate-500 mt-1">Neuro-navigation, microsurgery, EEG/EMG systems.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 text-center hover:border-brand-500 transition shadow-sm">
+                            <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
+                                <i class="fa-solid fa-ribbon"></i>
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-sm">Oncology Solutions</h3>
+                            <p class="text-xs text-slate-500 mt-1">Linear Accelerator rooms, PET-CT & chemotherapy suites.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 text-center hover:border-brand-500 transition shadow-sm">
+                            <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
+                                <i class="fa-solid fa-bed-pulse"></i>
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-sm">Critical Care & ICU</h3>
+                            <p class="text-xs text-slate-500 mt-1">Central monitoring systems, ventilators, isolation rooms.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Turnkey Services Spectrum -->
+                <div class="bg-slate-50 rounded-2xl border border-slate-200 p-8 mb-12">
+                    <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-gears text-brand-teal"></i> End-to-End Hospital Engineering Services
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-white p-5 rounded-xl border border-slate-200">
+                            <span class="text-brand-600 text-xs font-bold">01. PLANNING & DESIGN</span>
+                            <h4 class="font-bold text-slate-800 mt-1 text-sm">Architectural & Workflow Layout</h4>
+                            <p class="text-xs text-slate-500 mt-2">Compliance with international medical architecture codes, infection control, and radiation shielding.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200">
+                            <span class="text-brand-600 text-xs font-bold">02. GAS PIPELINE (MGPS)</span>
+                            <h4 class="font-bold text-slate-800 mt-1 text-sm">Medical Gas Systems</h4>
+                            <p class="text-xs text-slate-500 mt-2">Oxygen plant manifolds, vacuum units, compressed air, and bedhead trunking panels.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200">
+                            <span class="text-brand-600 text-xs font-bold">03. MODULAR OT</span>
+                            <h4 class="font-bold text-slate-800 mt-1 text-sm">Modular Surgical Theaters</h4>
+                            <p class="text-xs text-slate-500 mt-2">Hermetically sealed doors, anti-bacterial wall cladding, HEPA laminar airflow ceilings.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200">
+                            <span class="text-brand-600 text-xs font-bold">04. IT & MANAGEMENT</span>
+                            <h4 class="font-bold text-slate-800 mt-1 text-sm">HIS / PACS Digital Integration</h4>
+                            <p class="text-xs text-slate-500 mt-2">Hospital Information System software, electronic health records, and PACS imaging networks.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Request Turnkey Consultation Form Card -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm max-w-3xl mx-auto">
+                    <div class="border-b pb-4 mb-6">
+                        <h3 class="text-xl font-bold text-brand-900">Inquire About Turnkey Hospital Project</h3>
+                        <p class="text-xs text-slate-500">Speak with our healthcare engineers and medical procurement consultants.</p>
+                    </div>
+                    <form onsubmit="handleTurnkeySubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-xs font-semibold text-slate-700 block mb-1">Hospital / Organization Name *</label>
+                                <input type="text" required placeholder="e.g. City General Hospital" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2.5">
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold text-slate-700 block mb-1">Contact Person Name *</label>
+                                <input type="text" required placeholder="Dr. John Doe" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2.5">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-xs font-semibold text-slate-700 block mb-1">Email Address *</label>
+                                <input type="email" required placeholder="john@hospital.com" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2.5">
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold text-slate-700 block mb-1">Project Scope</label>
+                                <select class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2.5">
+                                    <option>New Hospital Setup (50-200+ Beds)</option>
+                                    <option>Modular OT / ICU Renovation</option>
+                                    <option>Medical Gas Pipeline Project</option>
+                                    <option>Medical Equipment Fleet Procurement</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="text-xs font-semibold text-slate-700 block mb-1">Project Details & Requirements</label>
+                            <textarea rows="3" placeholder="Describe capacity, target launch date, required departments..." class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2.5"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-brand-600 hover:bg-brand-800 text-white font-bold py-3 rounded-xl transition text-xs uppercase tracking-wider">
+                            Submit Project Request
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==================== TAB 4: ABOUT US ==================== -->
+        <section id="tab-about" class="tab-content hidden py-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-12">
+                    <h1 class="text-3xl font-extrabold text-brand-900">About Evanka International</h1>
+                    <p class="text-slate-600 text-sm mt-2">Empowering Global Healthcare Infrastructure with Cutting-Edge Technology and World-Class Engineering Solutions.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+                    <div class="space-y-4 text-sm text-slate-600 leading-relaxed">
+                        <h2 class="text-2xl font-bold text-slate-800">Who We Are</h2>
+                        <p>
+                            Evanka International is a premier global provider of integrated medical devices and hospital turnkey solutions. Founded with a mission to bridge the gap between advanced medical technology and healthcare accessibility, we serve hospitals, clinics, diagnostic centers, and governments across more than 75 countries.
+                        </p>
+                        <p>
+                            Our product portfolio spans over 500 medical products including digital radiology systems, ultrasound dopplers, automated lab instruments, OT lights and tables, and ICU life support systems—manufactured and sourced under rigorous CE and ISO 13485 certifications.
+                        </p>
+                    </div>
+                    <div class="bg-brand-900 rounded-2xl p-8 text-white space-y-6">
+                        <h3 class="text-xl font-bold text-brand-cyan">Why Partner With Evanka?</h3>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-award text-brand-teal text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-sm">International Quality Compliance</h4>
+                                <p class="text-xs text-slate-300">All equipment rigorously inspected and certified according to CE & ISO international standards.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-truck-fast text-brand-teal text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-sm">Global Supply & Shipping</h4>
+                                <p class="text-xs text-slate-300">Seamless logistics, customs clearances, and safe protective wooden casing for heavy machinery.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-user-gear text-brand-teal text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-sm">Installation & Technical After-Sales</h4>
+                                <p class="text-xs text-slate-300">Dedicated biomedical engineers providing remote and on-site setup, calibration, and training.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 5: CONTACT US ==================== -->
+        <section id="tab-contact" class="tab-content hidden py-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-12">
+                    <h1 class="text-3xl font-extrabold text-brand-900">Contact Us & Quotation Request</h1>
+                    <p class="text-slate-600 text-sm mt-2">Have a question or need an official commercial quotation? Our global sales & technical support team is here to assist.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Contact Details -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                            <h3 class="font-bold text-lg text-brand-900 border-b pb-2">Headquarters & Info</h3>
+                            <div class="flex items-start gap-3 text-sm">
+                                <i class="fa-solid fa-location-dot text-brand-600 text-lg mt-1"></i>
+                                <div>
+                                    <strong class="block text-slate-800">Global Sales HQ</strong>
+                                    <span class="text-xs text-slate-500">Evanka Healthcare Park, International Medical Corridor, Suite 500</span>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 text-sm">
+                                <i class="fa-solid fa-phone text-brand-600 text-lg mt-1"></i>
+                                <div>
+                                    <strong class="block text-slate-800">Direct Contact Numbers</strong>
+                                    <span class="text-xs text-slate-500">Tel: +1 (800) 555-EVANKA<br>WhatsApp / Mob: +1 (555) 019-2834</span>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 text-sm">
+                                <i class="fa-solid fa-envelope text-brand-600 text-lg mt-1"></i>
+                                <div>
+                                    <strong class="block text-slate-800">Email Enquiries</strong>
+                                    <span class="text-xs text-slate-500">sales@evankainternational.com<br>support@evankainternational.com</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-brand-50 p-6 rounded-2xl border border-brand-100">
+                            <h4 class="font-bold text-brand-900 text-sm mb-1"><i class="fa-solid fa-headset text-brand-600 mr-1"></i> 24/7 Technical Support</h4>
+                            <p class="text-xs text-slate-600">Our biomedical team offers remote diagnostics, user manual downloads, and spare parts assistance globally.</p>
+                        </div>
+                    </div>
+
+                    <!-- Main General Form -->
+                    <div class="lg:col-span-7 bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+                        <h3 class="font-bold text-xl text-brand-900 mb-6">Send an Inquiry Message</h3>
+                        <form onsubmit="handleGeneralContact(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="text-xs font-semibold text-slate-700 block mb-1">Full Name *</label>
+                                    <input type="text" required placeholder="John Doe" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2.5">
+                                </div>
+                                <div>
+                                    <label class="text-xs font-semibold text-slate-700 block mb-1">Company / Hospital Name</label>
+                                    <input type="text" placeholder="St. Mary Clinic" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2.5">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="text-xs font-semibold text-slate-700 block mb-1">Email Address *</label>
+                                    <input type="email" required placeholder="john@example.com" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2.5">
+                                </div>
+                                <div>
+                                    <label class="text-xs font-semibold text-slate-700 block mb-1">Phone / WhatsApp</label>
+                                    <input type="text" placeholder="+1..." class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2.5">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold text-slate-700 block mb-1">Request Type</label>
+                                <select class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2.5">
+                                    <option>Equipment Purchasing Inquiry</option>
+                                    <option>Turnkey Hospital Setup Consulting</option>
+                                    <option>Distributor / Partnership Request</option>
+                                    <option>After-sales Service & Maintenance</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold text-slate-700 block mb-1">Message / Product Specifications *</label>
+                                <textarea rows="4" required placeholder="Please write details of equipment needed, quantity, target location..." class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2.5"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-brand-600 hover:bg-brand-800 text-white font-bold py-3 rounded-xl transition text-xs uppercase tracking-wider">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark text-slate-400 text-xs border-t border-slate-800 pt-12 pb-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div class="space-y-3">
+                <div class="flex items-center gap-2 text-white font-bold text-lg">
+                    <i class="fa-solid fa-staff-snake text-brand-teal"></i> EVANKA INT.
+                </div>
+                <p class="text-slate-400 leading-relaxed">
+                    Leading manufacturer and global turnkey provider of medical equipment, operating theater solutions, and healthcare design.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3 uppercase tracking-wider">Product Categories</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" onclick="switchTab('products'); filterCategory('X-Ray & Imaging')" class="hover:text-white">Digital X-Ray Systems</a></li>
+                    <li><a href="#" onclick="switchTab('products'); filterCategory('Operating Theater')" class="hover:text-white">Operating Theater Lights & Tables</a></li>
+                    <li><a href="#" onclick="switchTab('products'); filterCategory('Laboratory Analyzer')" class="hover:text-white">Biochemistry Analyzers</a></li>
+                    <li><a href="#" onclick="switchTab('products'); filterCategory('Ultrasound')" class="hover:text-white">3D/4D Color Ultrasound</a></li>
+                    <li><a href="#" onclick="switchTab('products'); filterCategory('ICU & Patient Monitors')" class="hover:text-white">ICU Ventilators & Monitors</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3 uppercase tracking-wider">Healthcare Solutions</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" onclick="switchTab('healthcare')" class="hover:text-white">Modular OT Installation</a></li>
+                    <li><a href="#" onclick="switchTab('healthcare')" class="hover:text-white">Medical Gas Pipeline (MGPS)</a></li>
+                    <li><a href="#" onclick="switchTab('healthcare')" class="hover:text-white">Cardiology Cath Lab Setup</a></li>
+                    <li><a href="#" onclick="switchTab('healthcare')" class="hover:text-white">Hospital Turnkey Advisory</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3 uppercase tracking-wider">Certifications</h4>
+                <p class="text-slate-400 mb-2">Complying with international medical standard regulatory norms:</p>
+                <div class="flex gap-2">
+                    <span class="bg-slate-800 text-slate-300 px-2 py-1 rounded font-mono font-bold">ISO 13485</span>
+                    <span class="bg-slate-800 text-slate-300 px-2 py-1 rounded font-mono font-bold">CE Certified</span>
+                    <span class="bg-slate-800 text-slate-300 px-2 py-1 rounded font-mono font-bold">FDA Registered</span>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800 pt-6 text-center text-slate-500">
+            &copy; 2026 Evanka International Healthcare Systems. All Rights Reserved. Inspired by Ysenmed & Fortis Healthcare design paradigms.
+        </div>
+    </footer>
+
+    <!-- ==================== MODALS ==================== -->
+
+    <!-- Product Detail Modal -->
+    <div id="product-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-xl font-bold">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="product-modal-content">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Quote Basket / Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+            <button onclick="toggleCartModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-xl font-bold">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-xl font-bold text-brand-900 mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-file-invoice text-brand-600"></i> Quote Inquiry Request
+            </h3>
+            <div id="cart-items-list" class="max-h-60 overflow-y-auto space-y-3 border-t border-b py-4 mb-4">
+                <!-- Cart items list dynamically rendered -->
+            </div>
+            <div id="cart-form-container">
+                <form onsubmit="handleCartSubmit(event)" class="space-y-3">
+                    <input type="text" required placeholder="Your Name *" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2.5">
+                    <input type="email" required placeholder="Your Email Address *" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2.5">
+                    <input type="text" placeholder="Hospital / Organization" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2.5">
+                    <button type="submit" class="w-full bg-brand-600 hover:bg-brand-800 text-white font-bold py-3 rounded-xl text-xs uppercase tracking-wider transition">
+                        Submit Quote Inquiry
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Turnkey Consultation Modal -->
+    <div id="turnkey-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+            <button onclick="closeTurnkeyModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-xl font-bold">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-xl font-bold text-brand-900 mb-2">Hospital Setup Inquiry</h3>
+            <p class="text-xs text-slate-500 mb-4">Request a call back from our hospital engineering team.</p>
+            <form onsubmit="handleTurnkeyModalSubmit(event)" class="space-y-3">
+                <input type="text" required placeholder="Hospital / Business Name *" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2.5">
+                <input type="email" required placeholder="Email Address *" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2.5">
+                <input type="text" placeholder="Phone Number with Country Code" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2.5">
+                <textarea rows="3" placeholder="Brief requirement details..." class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2.5"></textarea>
+                <button type="submit" class="w-full bg-brand-teal hover:bg-teal-700 text-white font-bold py-3 rounded-xl text-xs uppercase tracking-wider transition">
+                    Request Turnkey Call
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Sample Product Database (Inspired by Ysenmed medical line-up)
+        const productsData = [
+            {
+                id: 'EV-X01',
+                title: '50KW High-Frequency Digital Radiography System',
+                category: 'X-Ray & Imaging',
+                badge: 'Best Seller',
+                icon: 'fa-x-ray',
+                color: 'bg-blue-100 text-blue-600',
+                specs: [
+                    '50KW High frequency generator',
+                    'Flat Panel Detector: 17x17 inch Wireless',
+                    'Motorized auto-tracking tube ceiling crane',
+                    'DICOM 3.0 Compatible PACS integration'
+                ],
+                desc: 'Top-tier floor-mounted DR X-ray solution engineered for high throughput hospital radiology departments. Exceptional image clarity with low dosage radiation.'
+            },
+            {
+                id: 'EV-OT02',
+                title: 'Shadowless Double Dome LED Surgical Light',
+                category: 'Operating Theater',
+                badge: 'Modular OT',
+                icon: 'fa-lightbulb',
+                color: 'bg-amber-100 text-amber-600',
+                specs: [
+                    'Illuminance: 160,000 + 140,000 Lux',
+                    'Color Temp: 3800K - 5000K adjustable',
+                    'LED Lifespan: > 80,000 hours',
+                    'Endoscopy illumination mode included'
+                ],
+                desc: 'Precision surgical lighting fixture designed for complex operating procedures. Provides cold shadowless light and optimal color rendering.'
+            },
+            {
+                id: 'EV-LA03',
+                title: 'Fully Automated Biochemistry Analyzer (400 T/H)',
+                category: 'Laboratory Analyzer',
+                badge: 'High Speed',
+                icon: 'fa-flask-vial',
+                color: 'bg-emerald-100 text-emerald-600',
+                specs: [
+                    'Throughput: 400 tests/hour continuous',
+                    '80 reagent positions, 90 reaction cuvettes',
+                    'Hollow-glass optical system',
+                    'Automatic probe washing & liquid detection'
+                ],
+                desc: 'Reliable high-speed laboratory analyzer for clinical pathology centers, delivering fast and accurate diagnostic test results.'
+            },
+            {
+                id: 'EV-US04',
+                title: '4D Premium Color Doppler Ultrasound Diagnostic',
+                category: 'Ultrasound',
+                badge: '4D Imaging',
+                icon: 'fa-wave-square',
+                color: 'bg-purple-100 text-purple-600',
+                specs: [
+                    '21.5-inch LED monitor + touch control panel',
+                    '4 active transducer ports',
+                    'Cardiac, OB/GYN, Vascular, Abdominal software',
+                    '3D/4D Real-time volumetric probe support'
+                ],
+                desc: 'Multipurpose diagnostic ultrasound workstation featuring elastography and continuous cardiac Doppler for high clinical confidence.'
+            },
+            {
+                id: 'EV-ICU05',
+                title: 'Multi-Para 12-inch Modular Patient Monitor',
+                category: 'ICU & Patient Monitors',
+                badge: 'ICU Standard',
+                icon: 'fa-heart-pulse',
+                color: 'bg-rose-100 text-rose-600',
+                specs: [
+                    'Standard: ECG, SpO2, NIBP, RESP, TEMP, PR',
+                    'Optional: 2-IBP, EtCO2, Cardiac Output',
+                    '12.1-inch high resolution touch screen',
+                    'Central Monitoring System networking'
+                ],
+                desc: 'Robust bedside patient monitoring unit built for ICUs, CCUs, and post-surgery recovery suites.'
+            },
+            {
+                id: 'EV-HF06',
+                title: 'Electric 5-Function ICU Hospital Bed',
+                category: 'Hospital Furniture',
+                badge: 'ISO Certified',
+                icon: 'fa-bed',
+                color: 'bg-indigo-100 text-indigo-600',
+                specs: [
+                    'Functions: Backrest, Kneerest, Hi-Lo, Trendelenburg',
+                    'CPR quick release handle on both sides',
+                    'Central braking control mechanism',
+                    'Weight capacity: 250 kg max load'
+                ],
+                desc: 'Ergonomic electric patient bed designed for optimal patient comfort and caregiver convenience in critical care settings.'
+            },
+            {
+                id: 'EV-LA07',
+                title: '5-Diff Automated Hematology Analyzer',
+                category: 'Laboratory Analyzer',
+                badge: 'High Precision',
+                icon: 'fa-vial-circle-check',
+                color: 'bg-emerald-100 text-emerald-600',
+                specs: [
+                    '29 parameters, 3 histograms, 1 scattergram',
+                    'Throughput: 60 samples per hour',
+                    'Laser scatter & flow cytometry technology',
+                    'Micro sample volume (20uL)'
+                ],
+                desc: 'Advanced 5-part differential blood cell counter suited for hospital laboratories and diagnostic centers.'
+            },
+            {
+                id: 'EV-OT08',
+                title: 'Electric Hydraulic Multi-Purpose Surgical Table',
+                category: 'Operating Theater',
+                badge: 'Heavy Duty',
+                icon: 'fa-sliders',
+                color: 'bg-amber-100 text-amber-600',
+                specs: [
+                    'Radiolucent table top for C-arm X-ray use',
+                    'Memory gel mattress anti-decubitus',
+                    'Built-in kidney bridge elevator',
+                    'Emergency battery back-up system'
+                ],
+                desc: 'Versatile surgical operating table suitable for general surgery, orthopedics, urology, and neurosurgery.'
+            }
+        ];
+
+        // State Management
+        let cart = [];
+        let currentCategory = 'All';
+
+        // DOM Initialization
+        window.onload = function() {
+            renderFeaturedProducts();
+            renderCatalog(productsData);
+
+            // Bind global search input
+            document.getElementById('global-search-input').addEventListener('input', function(e) {
+                const term = e.target.value.toLowerCase();
+                if(term.length > 0) {
+                    switchTab('products');
+                    document.getElementById('catalog-search-input').value = term;
+                    filterProducts();
+                }
+            });
+
+            // Mobile menu toggle
+            document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+        };
+
+        // Navigation Switcher
+        function switchTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            
+            // Show selected tab
+            const target = document.getElementById('tab-' + tabId);
+            if(target) target.classList.remove('hidden');
+
+            // Reset navigation highlight
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-brand-600');
+            });
+            const activeNav = document.getElementById('nav-' + tabId);
+            if(activeNav) activeNav.classList.add('text-brand-600');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Render Featured Products on Home Page
+        function renderFeaturedProducts() {
+            const container = document.getElementById('featured-products-grid');
+            const featured = productsData.slice(0, 4);
+
+            container.innerHTML = featured.map(p => `
+                <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-lg transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-full h-36 bg-slate-100 rounded-xl flex items-center justify-center mb-4 text-slate-400 relative">
+                            <i class="fa-solid ${p.icon} text-5xl"></i>
+                            <span class="absolute top-2 right-2 ${p.color} text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">${p.badge}</span>
+                        </div>
+                        <span class="text-[11px] font-bold text-brand-teal uppercase tracking-wider">${p.category}</span>
+                        <h4 class="font-bold text-slate-800 text-sm mt-1 line-clamp-2">${p.title}</h4>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <button onclick="openProductModal('${p.id}')" class="text-xs text-brand-600 font-bold hover:underline">
+                            View Details
+                        </button>
+                        <button onclick="addToCart('${p.id}')" class="bg-brand-50 text-brand-600 hover:bg-brand-600 hover:text-white px-3 py-1.5 rounded-lg text-xs font-bold transition">
+                            + Quote
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Product Catalog
+        function renderCatalog(items) {
+            const grid = document.getElementById('catalog-grid');
+            if(items.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12 text-slate-500">
+                        <i class="fa-solid fa-box-open text-4xl mb-3 text-slate-300"></i>
+                        <p class="font-semibold text-sm">No medical equipment matching your criteria.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = items.map(p => `
+                <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-lg transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-full h-40 bg-slate-100 rounded-xl flex items-center justify-center mb-4 text-slate-400 relative">
+                            <i class="fa-solid ${p.icon} text-6xl"></i>
+                            <span class="absolute top-2 right-2 ${p.color} text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">${p.badge}</span>
+                        </div>
+                        <span class="text-[10px] font-bold text-brand-teal uppercase tracking-wider">${p.category}</span>
+                        <h3 class="font-bold text-slate-900 text-sm mt-1 mb-2 leading-snug">${p.title}</h3>
+                        <ul class="text-[11px] text-slate-500 space-y-1 mb-4">
+                            ${p.specs.slice(0, 2).map(s => `<li class="truncate"><i class="fa-solid fa-check text-brand-teal mr-1"></i> ${s}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100 flex gap-2">
+                        <button onclick="openProductModal('${p.id}')" class="w-1/2 border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold py-2 rounded-lg text-xs transition">
+                            Specs
+                        </button>
+                        <button onclick="addToCart('${p.id}')" class="w-1/2 bg-brand-600 hover:bg-brand-800 text-white font-bold py-2 rounded-lg text-xs transition">
+                            Inquire
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter Products by Category and Search Text
+        function filterCategory(cat) {
+            currentCategory = cat;
+            
+            // Update UI pills
+            document.querySelectorAll('.cat-pill').forEach(btn => {
+                if(btn.innerText.includes(cat) || (cat === 'All' && btn.innerText.includes('All'))) {
+                    btn.className = 'cat-pill bg-brand-600 text-white px-4 py-2 rounded-lg font-semibold whitespace-nowrap';
+                } else {
+                    btn.className = 'cat-pill bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg font-semibold whitespace-nowrap';
+                }
+            });
+
+            filterProducts();
+        }
+
+        function filterProducts() {
+            const query = document.getElementById('catalog-search-input').value.toLowerCase();
+            
+            const filtered = productsData.filter(p => {
+                const matchesCat = (currentCategory === 'All') || p.category.includes(currentCategory);
+                const matchesQuery = p.title.toLowerCase().includes(query) || 
+                                     p.category.toLowerCase().includes(query) || 
+                                     p.desc.toLowerCase().includes(query);
+                return matchesCat && matchesQuery;
+            });
+
+            renderCatalog(filtered);
+        }
+
+        // Hero Quick Search
+        function executeHeroSearch() {
+            const cat = document.getElementById('hero-cat-select').value;
+            const keyword = document.getElementById('hero-keyword').value.trim();
+
+            switchTab('products');
+            
+            if(cat !== 'all') {
+                filterCategory(cat);
+            }
+            if(keyword) {
+                document.getElementById('catalog-search-input').value = keyword;
+                filterProducts();
+            }
+        }
+
+        // Product Details Modal
+        function openProductModal(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if(!product) return;
+
+            const modalContent = document.getElementById('product-modal-content');
+            modalContent.innerHTML = `
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-brand-50 text-brand-600 rounded-xl flex items-center justify-center text-2xl">
+                        <i class="fa-solid ${product.icon}"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-brand-teal uppercase tracking-widest">${product.category}</span>
+                        <h2 class="text-lg font-bold text-slate-900">${product.title}</h2>
+                    </div>
+                </div>
+
+                <p class="text-xs text-slate-600 leading-relaxed mb-6">${product.desc}</p>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-6">
+                    <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">Technical Specifications</h4>
+                    <ul class="text-xs text-slate-600 space-y-1.5">
+                        ${product.specs.map(s => `<li class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-brand-600 text-[8px]"></i> ${s}</li>`).join('')}
+                    </ul>
+                </div>
+
+                <div class="flex gap-3">
+                    <button onclick="addToCart('${product.id}'); closeProductModal()" class="w-full bg-brand-600 hover:bg-brand-800 text-white font-bold py-3 rounded-xl text-xs uppercase tracking-wider transition">
+                        Add to Quote Request
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+        }
+
+        // Quote Basket / Cart Management
+        function addToCart(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if(!product) return;
+
+            if(!cart.some(item => item.id === productId)) {
+                cart.push(product);
+                updateCartUI();
+                alert(`"${product.title}" added to your Quote Basket.`);
+            } else {
+                alert(`This item is already in your Quote Basket.`);
+            }
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            document.getElementById('cart-count').innerText = cart.length;
+            document.getElementById('cart-count-mobile').innerText = cart.length;
+
+            const list = document.getElementById('cart-items-list');
+            if(cart.length === 0) {
+                list.innerHTML = `<p class="text-xs text-slate-400 text-center py-4">Your quote request list is currently empty.</p>`;
+                return;
+            }
+
+            list.innerHTML = cart.map(item => `
+                <div class="flex items-center justify-between text-xs bg-slate-50 p-2.5 rounded-lg border border-slate-200">
+                    <div class="font-semibold text-slate-800 truncate pr-2">${item.title}</div>
+                    <button onclick="removeFromCart('${item.id}')" class="text-rose-500 hover:text-rose-700 font-bold text-sm px-1">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function toggleCartModal() {
+            const modal = document.getElementById('cart-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function handleCartSubmit(e) {
+            e.preventDefault();
+            if(cart.length === 0) {
+                alert("Please add at least one medical equipment item to your quote list.");
+                return;
+            }
+            alert("Thank you! Your quotation request for " + cart.length + " item(s) has been submitted to Evanka International. Our export manager will email you within 24 hours.");
+            cart = [];
+            updateCartUI();
+            toggleCartModal();
+        }
+
+        // Turnkey Consultation Modals & Forms
+        function openTurnkeyModal() {
+            document.getElementById('turnkey-modal').classList.remove('hidden');
+        }
+
+        function closeTurnkeyModal() {
+            document.getElementById('turnkey-modal').classList.add('hidden');
+        }
+
+        function handleTurnkeySubmit(e) {
+            e.preventDefault();
+            alert("Hospital Turnkey Request Received! Our senior clinical consultant and hospital setup engineer will reach out to schedule an initial project assessment.");
+            e.target.reset();
+        }
+
+        function handleTurnkeyModalSubmit(e) {
+            e.preventDefault();
+            alert("Turnkey Consultation Request Submitted successfully.");
+            closeTurnkeyModal();
+        }
+
+        function handleGeneralContact(e) {
+            e.preventDefault();
+            alert("Thank you for contacting Evanka International. Your inquiry has been dispatched to our support & sales team.");
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
